@@ -4,27 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact Form</title>
-<link rel="stylesheet" href="style_grid2.css">
+<style>
+    form, #thankYouMessage { max-width: 400px; margin: 50px auto; }
+    label { display: block; margin-top: 10px; }
+    input { width: 100%; padding: 8px; margin-top: 5px; }
+    input[type="submit"] { margin-top: 15px; }
+</style>
 </head>
 <body>
-<main>
-    <header class="box">Header</header>
-    <nav class="box">Nav</nav>
-    <aside class="box">Aside</aside>
-    <section class="box">
-        <h2>Contact Form</h2>
-        <form action="thankyou.php" method="post" name="contactForm" id="contactForm">
-            <label for="firstName">First Name:</label><br>
-            <input type="text" id="firstName" name="firstName" required><br><br>
 
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
+<!-- Form -->
+<form id="contactForm">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required>
 
-            <input type="submit" value="Submit">
-            <input type="reset" value="Reset">
-        </form>
-    </section>
-    <footer class="box">Footer</footer>
-</main>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <input type="submit" value="Submit">
+</form>
+
+<!-- Thank You Message -->
+<div id="thankYouMessage" style="display:none;">
+    <h2>Thank You!</h2>
+    <p>Your submission has been received.</p>
+    <p><strong>Name:</strong> <span id="displayName"></span></p>
+    <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+</div>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault(); // prevent form from submitting
+
+    // Get form values
+    var name = document.getElementById('firstName').value;
+    var email = document.getElementById('email').value;
+
+    // Hide the form
+    document.getElementById('contactForm').style.display = 'none';
+
+    // Show the thank-you message
+    document.getElementById('displayName').textContent = name;
+    document.getElementById('displayEmail').textContent = email;
+    document.getElementById('thankYouMessage').style.display = 'block';
+});
+</script>
+
 </body>
 </html>
