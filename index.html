@@ -13,7 +13,7 @@
     <nav class="box">Nav</nav>
     <aside class="box">Aside</aside>
 
-    <!-- Section with form and thank-you message -->
+    <!-- Section with form -->
     <section class="box">
         <h2>Contact Form</h2>
 
@@ -22,19 +22,22 @@
             <label for="firstName">First Name:</label><br>
             <input type="text" id="firstName" name="firstName" required><br><br>
 
+            <label for="lastName">Last Name:</label><br>
+            <input type="text" id="lastName" name="lastName" required><br><br>
+
             <label for="email">Email:</label><br>
             <input type="email" id="email" name="email" required><br><br>
+
+            <label for="comments">Comments:</label><br>
+            <textarea id="comments" name="comments" rows="5" cols="30"></textarea><br><br>
 
             <input type="submit" value="Submit">
             <input type="reset" value="Reset">
         </form>
 
         <!-- Thank You Message -->
-        <div id="thankYouMessage" style="display:none;">
-            <h2>Thank You!</h2>
-            <p>Your submission has been received.</p>
-            <p><strong>Name:</strong> <span id="displayName"></span></p>
-            <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+        <div id="thankYouMessage" style="display:none; font-size: 20px; font-weight: bold;">
+            Thank you! The form has been submitted.
         </div>
     </section>
 
@@ -43,18 +46,12 @@
 
 <script>
 document.getElementById('contactForm').addEventListener('submit', function(e){
-    e.preventDefault(); // Stop form from submitting to server
-
-    // Get form values
-    var name = document.getElementById('firstName').value;
-    var email = document.getElementById('email').value;
+    e.preventDefault(); // Prevent default form submission
 
     // Hide the form
     document.getElementById('contactForm').style.display = 'none';
 
     // Show thank-you message
-    document.getElementById('displayName').textContent = name;
-    document.getElementById('displayEmail').textContent = email;
     document.getElementById('thankYouMessage').style.display = 'block';
 });
 </script>
